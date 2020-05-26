@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import * as db from '../models/index.js'
 import jwt from 'jsonwebtoken'
 
