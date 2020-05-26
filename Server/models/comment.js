@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import { User } from './user.js';
+import mongoose from 'mongoose'
+import { User } from './user.js'
 
 const CommentSchema = new mongoose.Schema(
   {
@@ -16,18 +16,18 @@ const CommentSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-);
+)
 
-CommentSchema.pre('remove', async function(next) {
+CommentSchema.pre('remove', async function (next) {
   try {
-    console.log('This object inside of CommentSchema.pre: ' + this);
-    const user = await User.findById(this.user);
-    user.comments.remove(this.id);
-    await user.save();
-    return next();
+    console.log('This object inside of CommentSchema.pre: ' + this)
+    const user = await User.findById(this.user)
+    user.comments.remove(this.id)
+    await user.save()
+    return next()
   } catch (err) {
-    next(err);
+    next(err)
   }
-});
+})
 
-export const Comment = mongoose.model('Comment', CommentSchema);
+export const Comment = mongoose.model('Comment', CommentSchema)

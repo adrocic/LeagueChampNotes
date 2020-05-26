@@ -1,8 +1,7 @@
-  
-import express from 'express';
-import { getAllComments } from '../handlers/getAllComments.js';
-const allCommentsRouter = express.Router({ mergeParams: true });
+import express from 'express'
+import { getAllComments } from '../handlers/getAllComments.js'
+const allCommentsRouter = express.Router({ mergeParams: true })
 
-allCommentsRouter.get('/', getAllComments);
+allCommentsRouter.get('/', getAllComments)
 
-export default allCommentsRouter;
+export default allCommentsRouter
