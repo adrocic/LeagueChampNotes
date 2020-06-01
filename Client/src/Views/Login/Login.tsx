@@ -23,7 +23,7 @@ const Login = (): JSX.Element => {
         justifyContent="center"
         alignItems="center"
       >
-        {isLoggedIn ? <Redirect to={'/shows'} /> : <LoginForm />}
+        {isLoggedIn ? <Redirect to={'/home'} /> : <LoginForm />}
       </Flex>
     </Flex>
   )
