@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { UserContext } from '../Services/UserContext'
 import {
   Flex,
   FormControl,
@@ -8,7 +9,9 @@ import {
   Button,
 } from '@chakra-ui/core'
 import { useForm } from 'react-hook-form'
+import { login } from '../Services/auth'
 import * as yup from 'yup'
+import { useAuth } from '../Services/AuthContext'
 
 const LoginSchema = yup.object().shape({
   email: yup.string().required(),
@@ -16,16 +19,26 @@ const LoginSchema = yup.object().shape({
 })
 
 const LoginForm = (): any => {
+  const auth = useAuth()
+
+  const { setUser } = useContext(UserContext as any)
+
   const { register, handleSubmit, errors, formState } = useForm({
     validationSchema: LoginSchema,
   })
+
   const { isSubmitting } = formState
+
   const [submissionError, setSubmissionError] = useState({ message: '' })
 
-  const onSubmit = (data: any, e: any) => {
-    console.log('submit event: ', e)
-    console.log(data)
-    setSubmissionError(() => ({ message: 'wrong' }))
+  const onSubmit = async (data: any, e: any) => {
+    try {
+      const loginData = await login(data)
+      setUser(loginData)
+      auth.onLogin(loginData.data.data.api_token)
+    } catch (err) {
+      setSubmissionError(err.message)
+    }
   }
   return (
     <Flex>

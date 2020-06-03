@@ -1,7 +1,7 @@
 import React from 'react'
 import { Flex } from '@chakra-ui/core'
-import { useAuth } from '../../Services/AuthContext'
-import LoginForm from '../../Components/LoginForm'
+import { useAuth } from '../Services/AuthContext'
+import LoginForm from '../Components/LoginForm'
 import { withRouter, Redirect } from 'react-router-dom'
 
 const Login = (): JSX.Element => {

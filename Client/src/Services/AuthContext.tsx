@@ -5,7 +5,7 @@ import { handleTokenChange } from '../Services/API'
 const AuthContext = createContext({})
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const AuthProvider = (props: any): React.Context<any> | JSX.Element => {
+export const AuthProvider = (props: any): JSX.Element => {
   const [token, setToken] = useState(localStorage.getItem('auth_token'))
   const [isInterceptorSet, setIsInterceptorSet] = useState(false)
 
